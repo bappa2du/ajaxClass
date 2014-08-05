@@ -34,8 +34,33 @@
                 }
                 return xhr;
             }
+
+            function grabFile(sample.txt)
+            {
+                var request = getHTTPObject();
+                if(request)
+                {
+                    request.onreadystatechange = function()
+                    {
+                        displayResponse(request);
+                    };
+                    request.open("get",sample.txt,true);
+                    request.send(null);
+                }
+            }
+
+            function displayResponse(request)
+            {
+                if(request.readyState == 4)
+                {
+                    if(request.status == 200 || request.status == 304)
+                    {
+                        alert(request.responseText);
+                    }
+                }
+            }
         </script>
 
-
+    <p><a href="sample.txt" onclick="grabFile(this.href); return false;">Click here</a> </p>
     </body>
 </html>
