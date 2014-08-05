@@ -10,7 +10,7 @@
 <h2>Let AJAX change this text</h2>
 <button type="button" onclick="xml()">Change Content</button>
 
-    <select id="demo"></select>
+    <p id="demo"></p>
 <script>
     function xml()
     {
@@ -34,7 +34,7 @@
 
                 //alert(typeof objCountries);
 
-                var options = "";
+                var options = "<select>";
 
                 var i;
 
@@ -46,6 +46,7 @@
                     options += "<option value='"+objCountries.countries[i].country.country_id+"'>"+objCountries.countries[i].country.country_name+"</option>"
 
                 }
+                options += "</select>";
 
                 //alert(options);
                 document.getElementById('demo').innerHTML = options;
