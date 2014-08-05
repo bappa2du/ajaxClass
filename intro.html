@@ -1,66 +1,35 @@
+<!DOCTYPE html>
 <html>
-    <head>
-        <title>Working with ajax</title>
-    </head>
+<head>
+    <script>
+        function loadXMLDoc()
+        {
+            var xmlhttp;
 
-    <body>
-
-        <script type="text/javascript">
-
-            function getHTTPObject()
+            if (window.XMLHttpRequest)
             {
-                var xhr = false;
-                if(window.XMLHttpRequest)
-                {
-                    xhr = new XMLHttpRequest();
-                }
-                else if(window.ActiveXObject)
-                {
-                    try
-                    {
-                        xhr = new ActiveXObject("Msxml2.XMLHTTP");
-                    }
-                    catch (e)
-                    {
-                        try
-                        {
-                            xhr = new ActiveXObject("Microsoft.XMLHTTP");
-                        }
-                        catch (e)
-                        {
-                            xhr = false;
-                        }
-                    }
-                }
-                return xhr;
+                xmlhttp=new XMLHttpRequest();
             }
-
-            function grabFile(sample.txt)
+            else
             {
-                var request = getHTTPObject();
-                if(request)
+                xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+            }
+            xmlhttp.onreadystatechange=function()
+            {
+                if (xmlhttp.readyState==4 && xmlhttp.status==200)
                 {
-                    request.onreadystatechange = function()
-                    {
-                        displayResponse(request);
-                    };
-                    request.open("get",sample.txt,true);
-                    request.send(null);
+                    alert(xmlhttp.responseText);
                 }
             }
+            xmlhttp.open("GET","sample.txt",true);
+            xmlhttp.send();
+        }
+    </script>
+</head>
+<body>
 
-            function displayResponse(request)
-            {
-                if(request.readyState == 4)
-                {
-                    if(request.status == 200 || request.status == 304)
-                    {
-                        alert(request.responseText);
-                    }
-                }
-            }
-        </script>
+<h2>Let AJAX change this text</h2>
+<button type="button" onclick="loadXMLDoc()">Change Content</button>
 
-    <p><a href="sample.txt" onclick="grabFile(this.href); return false;">Click here</a> </p>
-    </body>
+</body>
 </html>
