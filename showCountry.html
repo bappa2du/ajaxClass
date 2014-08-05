@@ -31,14 +31,17 @@
                 //alert(xmlhttp.responseText);
                 var objCountries = JSON.parse(xmlhttp.responseText);
                 //alert(typeof objCountries);
-                for(var i=0;i<=30;i++)
+
+                for(var i=0;i<=objCountries.countries.length;i++)
                 {
                     document.write("Country ID: "+objCountries.countries[i].country.country_id+"<br/>");
                     document.write("Country Name: "+objCountries.countries[i].country.country_name+"<br/>");
                     document.write("<br/>");
                 }
+
             }
         }
+
         xmlhttp.open("GET","country.txt",true);
         xmlhttp.send();
     }
