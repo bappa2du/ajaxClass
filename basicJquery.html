@@ -1,0 +1,38 @@
+<html>
+<head>
+
+    <script type="text/javascript" src="jquery.js"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $("#flip").click(function(){
+                $("#panel").slideToggle("slow");
+            });
+        });
+
+    </script>
+    <style type="text/css">
+        #panel
+        {
+            width: 500px;
+            height: 500px;
+            background-color: blueviolet;
+        }
+        #flip
+        {
+            width: 100px;
+            height: 100px;
+        }
+        #panel{
+            margin: auto;
+        }
+    </style>
+</head>
+<body>
+
+
+
+<div id="panel">Hello world!</div>
+<button id="flip">Click Here</button>
+</body>
+</html>
